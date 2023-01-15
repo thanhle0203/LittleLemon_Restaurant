@@ -24,7 +24,14 @@ def book(request):
      return render(request, 'book.html', context)
 
 # Add code for the bookings() view
-
+def bookings(request):
+    form = BookingForm()
+    if request.method == 'POST':
+        form = BookingForm(request.POST)  
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'bookings.html', context)
 
 
 def menu(request):
